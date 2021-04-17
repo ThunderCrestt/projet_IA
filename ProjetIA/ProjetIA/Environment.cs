@@ -10,7 +10,7 @@ namespace ProjetIA
 
     class Environment
     {
-        private List<List<Case>> _grid;
+        private List<List<Case>> _grid = new List<List<Case>>();
         public List<List<Case>> Grid
         {
             get { return _grid; }

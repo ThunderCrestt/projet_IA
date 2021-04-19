@@ -43,7 +43,10 @@ namespace ProjetIA
             List<Case> result = new List<Case>();
             for (int y = 0; y < _environment.Grid[x].Count; y++)
             {
-                result.Add(_environment.Grid[x][y]);
+                if (_environment.Grid[x][y].State != caseState.empty)
+                {
+                    result.Add(_environment.Grid[x][y]);
+                }
             }
             return result;
         }
@@ -57,7 +60,10 @@ namespace ProjetIA
             List<Case> result = new List<Case>();
             for (int x = 0; x < _environment.Grid.Count; x++)
             {
-                result.Add(_environment.Grid[x][y]);
+                if (_environment.Grid[x][y].State != caseState.empty)
+                {
+                    result.Add(_environment.Grid[x][y]);
+                }
             }
             return result;
         }

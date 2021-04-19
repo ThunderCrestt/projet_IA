@@ -15,6 +15,15 @@ namespace ProjetIA
         static void Main()
         {
             Environment env = new Environment();
+            Captor cap = new Captor(env);
+
+            List<Case> test = cap.GetPawns(caseState.empty);
+
+            for (int i = 0; i<test.Count; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(test[i]);
+            }
+            System.Diagnostics.Debug.WriteLine(test.Count);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

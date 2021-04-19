@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Captor.cs" />
     <Compile Include="Case.cs" />
+    <Compile Include="Effector.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

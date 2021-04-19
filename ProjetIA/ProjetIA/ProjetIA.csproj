@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Captor.cs" />
+    <Compile Include="Agent.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Effector.cs" />
     <Compile Include="Environment.cs" />

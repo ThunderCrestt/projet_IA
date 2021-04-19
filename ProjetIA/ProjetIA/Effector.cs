@@ -1,3 +1,9 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace ProjetIA
 {
     class Effector
@@ -9,7 +15,7 @@ namespace ProjetIA
         }
 
         //Placer un pion aux coordonnées indiquées
-        public void putPawn(caseState pawn, int x, int y)
+        public void PutPawn(caseState pawn, int x, int y)
         {
             Environment.FoundCase(x, y).State = pawn;
         }

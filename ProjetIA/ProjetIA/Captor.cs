@@ -21,13 +21,13 @@ namespace ProjetIA
         public List<Case> GetPawns(caseState state)
         {
             List<Case> result = new List<Case>();
-            for (int x = 0; x < _environment.Grid.Count; x++)
+            for (int y = 0; y < _environment.Grid.Count; y++)
             {
-                for (int y = 0; y < _environment.Grid[0].Count; y++)
+                for (int x = 0; x < _environment.Grid[0].Count; x++)
                 {
-                    if (_environment.Grid[x][y].State == state)
+                    if (_environment.Grid[y][x].State == state)
                     {
-                        result.Add(_environment.Grid[x][y]);
+                        result.Add(_environment.Grid[y][x]);
                     }
                 }
             }
@@ -36,16 +36,16 @@ namespace ProjetIA
 
 
         // Cette fonction permet de voir tous les pions présents sur une ligne.
-        // entrée : int x, la ligne 
+        // entrée : int y, la ligne 
         // sortie : Liste de cases.
-        public List<Case> GetPawnsRow(int x)
+        public List<Case> GetPawnsRow(int y)
         {
             List<Case> result = new List<Case>();
-            for (int y = 0; y < _environment.Grid[x].Count; y++)
+            for (int x = 0; x < _environment.Grid[y].Count; x++)
             {
-                if (_environment.Grid[x][y].State != caseState.empty)
+                if (_environment.Grid[y][x].State != caseState.empty)
                 {
-                    result.Add(_environment.Grid[x][y]);
+                    result.Add(_environment.Grid[y][x]);
                 }
             }
             return result;
@@ -53,16 +53,16 @@ namespace ProjetIA
 
 
         // Cette fonction permet de voir tous les pions présents sur une Colonne.
-        // entrée : int y, la colonne 
+        // entrée : int x, la colonne 
         // sortie : Liste de Cases.
-        public List<Case> GetPawnsCol(int y)
+        public List<Case> GetPawnsCol(int x)
         {
             List<Case> result = new List<Case>();
-            for (int x = 0; x < _environment.Grid.Count; x++)
+            for (int y = 0; y < _environment.Grid.Count; y++)
             {
-                if (_environment.Grid[x][y].State != caseState.empty)
+                if (_environment.Grid[y][x].State != caseState.empty)
                 {
-                    result.Add(_environment.Grid[x][y]);
+                    result.Add(_environment.Grid[y][x]);
                 }
             }
             return result;
@@ -92,11 +92,11 @@ namespace ProjetIA
         }
 
         // Cette fonction permet de voir si un pion est présent sur la case demandée.
-        // entrée : int x, int y
+        // entrée : int x la col, int y la ligne
         // sortie : True ou False
         public Boolean IsEmpty(int x, int y)
         {
-            return (_environment.Grid[x][y].State == caseState.empty);
+            return (_environment.Grid[y][x].State == caseState.empty);
         }
     }
 }

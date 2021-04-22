@@ -30,6 +30,7 @@ namespace ProjetIA
         }
 
         private void GameForm_Load(object sender, EventArgs e)
+
         {
         }
 
@@ -79,7 +80,7 @@ namespace ProjetIA
             //vertical win check
             for(int row =0; row <this.board.GetLength(0)-3;row++)
             {
-                for(int col=0;row < this.board.GetLength(1);col++)
+                for(int col=0;col < this.board.GetLength(1);col++)
                 {
                     if(this.allNumbersAreEqual(playerToCheck,this.board[row,col],this.board[row+1,col],this.board[row,col+1]))
                     {

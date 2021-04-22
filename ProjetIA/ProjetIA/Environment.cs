@@ -31,6 +31,7 @@ namespace ProjetIA
         }
         ~Environment() { }
 
+        //Cette fonction vide le puissance 4
         public void restartGame()
         {
             for (int j = 0; j < 6; j ++)

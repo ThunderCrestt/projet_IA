@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ProjetIA
 {
-    enum caseState
+    public enum caseState
     {
         yellow,
         red,
         empty,
     }
-    class Case
+    public class Case
     {
         private int _x;
         private int _y;

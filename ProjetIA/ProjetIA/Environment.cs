@@ -8,7 +8,7 @@ namespace ProjetIA
 {
 
 
-    class Environment
+    public class Environment
     {
         private List<List<Case>> _grid = new List<List<Case>>();
         public List<List<Case>> Grid
@@ -47,5 +47,9 @@ namespace ProjetIA
             return _grid[y][x];
         }
         
+        public void setCaseNewState(int x,int y,caseState newState)
+        {
+            this.Grid[y][x].State = newState;
+        }
     }
 }

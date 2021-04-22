@@ -13,7 +13,8 @@ namespace ProjetIA
     enum playerTurn
     {
         playerRed=0,
-        playerYellow=1
+        playerYellow=1,
+        none
     }
 
     public partial class GameForm : Form
@@ -67,42 +68,103 @@ namespace ProjetIA
                     if (this._turn == playerTurn.playerRed)
                     {
                         graphics.FillEllipse(Brushes.Red, 32+48 * colIndex, 32 + 48 * rowIndex, 32, 32);
-                        this._turn = playerTurn.playerYellow;
                     } else if(this._turn==playerTurn.playerYellow)
                     {
                         graphics.FillEllipse(Brushes.Yellow, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
+                    }
+                    //check if someone has won
+
+                    playerTurn winner = getWinner(this._turn);
+                    if(winner!=playerTurn.none)
+                    {
+                        string messagePlayerWon = (winner == playerTurn.playerRed) ? "Red" : "Yellow";
+                        MessageBox.Show("Congrulation " + messagePlayerWon + " player ! You Have Won ! ");
+                        Application.Restart();
+                    }
+
+                    //if nobody has won we give the other player the turn
+                    if (this._turn == playerTurn.playerRed)
+                    {
+                        this._turn = playerTurn.playerYellow;
+                    }
+                    else if (this._turn == playerTurn.playerYellow)
+                    {
                         this._turn = playerTurn.playerRed;
                     }
+
                 }
             }
         }
 
         private playerTurn getWinner(playerTurn playerToCheck)
         {
-
+            #region vertical win check(|)
             //vertical win check
-            /*
-            for(int row =0; row <this.board.GetLength(0)-3;row++)
+            for (int row=0; row<this._environment.Grid.Count-3;row++)
             {
-                for(int col=0;col < this.board.GetLength(1);col++)
+                for(int col=0;col<this._environment.Grid[0].Count; col++)
                 {
-                    if(this.allNumbersAreEqual(playerToCheck,this.board[row,col],this.board[row+1,col],this.board[row,col+1]))
+                    if(this.allStateCaseAreEqual(playerToCheck,this._environment.Grid[row][col], this._environment.Grid[row+1][col], this._environment.Grid[row+2][col], this._environment.Grid[row + 3][col]))
                     {
-
+                        return playerToCheck;
                     }
                 }
             }
-            */
-            return playerTurn.playerRed;
+            #endregion
+
+            #region horizontal win check (-)
+
+            //horizontal win check
+            for (int row = 0; row < this._environment.Grid.Count; row++)
+            {
+                for (int col = 0; col < this._environment.Grid[0].Count-3; col++)
+                {
+                    if (this.allStateCaseAreEqual(playerToCheck, this._environment.Grid[row][col], this._environment.Grid[row][col+1], this._environment.Grid[row][col + 2], this._environment.Grid[row][col + 3]))
+                    {
+                        return playerToCheck;
+                    }
+                }
+            }
+            #endregion
+
+            #region top left diagonal win check (\)
+            for (int row = 0; row < this._environment.Grid.Count-3; row++)
+            {
+                for (int col = 0; col < this._environment.Grid[0].Count - 3; col++)
+                {
+                    if (this.allStateCaseAreEqual(playerToCheck, this._environment.Grid[row][col], this._environment.Grid[row+1][col + 1], this._environment.Grid[row+2][col + 2], this._environment.Grid[row+3][col + 3]))
+                    {
+                        return playerToCheck;
+                    }
+                }
+            }
+            #endregion
+
+            #region top right diagonal win check (/)
+            //top right diagonal win check (/)
+            for (int row = 0; row < this._environment.Grid.Count - 3; row++)
+            {
+                for (int col = 3; col < this._environment.Grid[0].Count; col++)
+                {
+                    if (this.allStateCaseAreEqual(playerToCheck, this._environment.Grid[row][col], this._environment.Grid[row + 1][col - 1], this._environment.Grid[row + 2][col - 2], this._environment.Grid[row + 3][col - 3]))
+                    {
+                        return playerToCheck;
+                    }
+                }
+            }
+            #endregion
+            return playerTurn.none;
             
         }
 
-        private bool allNumbersAreEqual(playerTurn toCheck,params int[] numbers)
+
+        //read if all cases in a list is equal
+        private bool allStateCaseAreEqual(playerTurn toCheck,params Case[] cases)
         {
-            int toCheckInInt = (this._turn == playerTurn.playerRed) ? 1 : 2;
-            foreach (int num in numbers)
+            caseState stateToCheck = (toCheck == playerTurn.playerRed) ? caseState.red : caseState.yellow;
+            foreach (Case c in cases)
             {
-                if(num!= toCheckInInt)
+                if(c.State!= stateToCheck)
                 {
                     return false;
                 }

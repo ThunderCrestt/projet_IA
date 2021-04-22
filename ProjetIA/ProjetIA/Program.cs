@@ -14,6 +14,8 @@ namespace ProjetIA
         [STAThread]
         static void Main()
         {
+            Environment env = new Environment();
+            Captor cap = new Captor(env);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GameForm());

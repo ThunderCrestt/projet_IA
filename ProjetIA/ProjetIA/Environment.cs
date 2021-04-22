@@ -43,9 +43,9 @@ namespace ProjetIA
             }
         }
 
-        public Case FoundCase(int i, int j)
+        public Case FoundCase(int x, int y)
         {
-            return _grid[i][j];
+            return _grid[y][x];
         }
         
     }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ProjetIA
 {
-    enum playerTurn
+    public enum playerTurn
     {
         playerRed=0,
         playerYellow=1,
@@ -98,78 +98,7 @@ namespace ProjetIA
 
         private playerTurn getWinner(playerTurn playerToCheck)
         {
-            #region vertical win check(|)
-            //vertical win check
-            for (int row=0; row<this._environment.Grid.Count-3;row++)
-            {
-                for(int col=0;col<this._environment.Grid[0].Count; col++)
-                {
-                    if(this.allStateCaseAreEqual(playerToCheck,this._environment.Grid[row][col], this._environment.Grid[row+1][col], this._environment.Grid[row+2][col], this._environment.Grid[row + 3][col]))
-                    {
-                        return playerToCheck;
-                    }
-                }
-            }
-            #endregion
-
-            #region horizontal win check (-)
-
-            //horizontal win check
-            for (int row = 0; row < this._environment.Grid.Count; row++)
-            {
-                for (int col = 0; col < this._environment.Grid[0].Count-3; col++)
-                {
-                    if (this.allStateCaseAreEqual(playerToCheck, this._environment.Grid[row][col], this._environment.Grid[row][col+1], this._environment.Grid[row][col + 2], this._environment.Grid[row][col + 3]))
-                    {
-                        return playerToCheck;
-                    }
-                }
-            }
-            #endregion
-
-            #region top left diagonal win check (\)
-            for (int row = 0; row < this._environment.Grid.Count-3; row++)
-            {
-                for (int col = 0; col < this._environment.Grid[0].Count - 3; col++)
-                {
-                    if (this.allStateCaseAreEqual(playerToCheck, this._environment.Grid[row][col], this._environment.Grid[row+1][col + 1], this._environment.Grid[row+2][col + 2], this._environment.Grid[row+3][col + 3]))
-                    {
-                        return playerToCheck;
-                    }
-                }
-            }
-            #endregion
-
-            #region top right diagonal win check (/)
-            //top right diagonal win check (/)
-            for (int row = 0; row < this._environment.Grid.Count - 3; row++)
-            {
-                for (int col = 3; col < this._environment.Grid[0].Count; col++)
-                {
-                    if (this.allStateCaseAreEqual(playerToCheck, this._environment.Grid[row][col], this._environment.Grid[row + 1][col - 1], this._environment.Grid[row + 2][col - 2], this._environment.Grid[row + 3][col - 3]))
-                    {
-                        return playerToCheck;
-                    }
-                }
-            }
-            #endregion
-            return playerTurn.none;
-            
-        }
-
-
-        //read if all cases in a list is equal
-        private bool allStateCaseAreEqual(playerTurn toCheck,params Case[] cases)
-        {
-            caseState stateToCheck = (toCheck == playerTurn.playerRed) ? caseState.red : caseState.yellow;
-            foreach (Case c in cases)
-            {
-                if(c.State!= stateToCheck)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return this._environment.getWinner(playerToCheck);
         }
 
         //get the columnIndex when mouse is clicked

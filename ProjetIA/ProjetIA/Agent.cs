@@ -31,7 +31,11 @@ namespace ProjetIA
             _beliefs.caseWithYellowPawn = captor.GetPawns(caseState.yellow);
         }
 
+        public int alphabeta(Case c, int alpha, int beta)
+        {
 
+            return 0;
+        }
 
     }
 }

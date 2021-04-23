@@ -66,6 +66,19 @@ namespace ProjetIA
             return true;
         }
 
+        public int getTheLowestEmptyCellIndexInCol(int col)
+        {
+            for (int i = 5; i >= 0; i--)
+            {
+                if (Grid[i][col].State == caseState.empty)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+
         public playerTurn getWinner(playerTurn playerToCheck)
         {
             #region vertical win check(|)

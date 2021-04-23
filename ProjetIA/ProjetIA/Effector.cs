@@ -13,11 +13,12 @@ namespace ProjetIA
         {
             get; set;
         }
-
+        
         //Placer un pion aux coordonnées indiquées
-        public void PutPawn(caseState pawn, int x, int y)
+        public void PutPawn(caseState pawn, int col)
         {
-            Environment.FoundCase(x, y).State = pawn;
+            int rowIndex = this._environment.getTheLowestEmptyCellIndexInCol(col);
+            Environment.setCaseNewState(col,rowIndex,pawn);
         }
     }
 }

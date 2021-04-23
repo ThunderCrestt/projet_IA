@@ -98,5 +98,21 @@ namespace ProjetIA
         {
             return (_environment.Grid[y][x].State == caseState.empty);
         }
+
+        // Cette fonction permet de voir si la colonne position x est complete ou non
+        // entrée : int x la col
+        // sortie : True ou False
+        public Boolean CanPlay(int x)
+        {
+            int cpt = 0;
+            for (int y = 0; y < _environment.Grid.Count; y++)
+            {
+                if (_environment.Grid[y][x].State != caseState.empty)
+                {
+                    cpt += 1;
+                }
+            }
+            return (cpt == _environment.Grid.Count);
+        }
     }
 }

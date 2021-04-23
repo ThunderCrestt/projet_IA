@@ -11,13 +11,13 @@ namespace ProjetIA
         /// <summary>
         /// Nettoyage des ressources utilisées.
         /// </summary>
-        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
+        /// <param name="disposing">true si les ressources managées doivent être  supprimées ; sinon, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
-            }
+            }  
             base.Dispose(disposing);
         }
 
@@ -36,7 +36,7 @@ namespace ProjetIA
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // titleLabel
+            // titleLabel 
             // 
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.titleLabel.BackColor = System.Drawing.SystemColors.Menu;

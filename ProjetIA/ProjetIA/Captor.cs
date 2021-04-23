@@ -15,9 +15,31 @@ namespace ProjetIA
             this._environment = environment;
         }
 
-        public bool isAWinningMove(int col)
+        public bool isAWinningMove(int col,playerTurn turn)
         {
+            caseState stateToCheck = (turn == playerTurn.playerRed) ? caseState.red : caseState.yellow;
+            int rowIndexOfLastPawnInCol = this._environment.getTheLowestEmptyCellIndexInCol(col);
+            if (rowIndexOfLastPawnInCol >= 3 //si on a trois pion aligné sur la même col
+               && this._environment.Grid[rowIndexOfLastPawnInCol-1][col].State==stateToCheck
+               && this._environment.Grid[rowIndexOfLastPawnInCol-2][col].State == stateToCheck
+               && this._environment.Grid[rowIndexOfLastPawnInCol - 3][col].State == stateToCheck) 
+            {
+                return true;
+            }
 
+            for (int dy = -1; dy <= 1; dy++)
+            {                                     // Iterate on horizontal (dy = 0) or two diagonal directions (dy = -1 or dy = 1).
+                int nb = 0;                       // counter of the number of stones of current player surronding the played stone in tested direction.
+                for (int dx = -1; dx <= 1; dx += 2) // count continuous stones of current player on the left, then right of the played column.
+
+                    for (int x = col + dx, y = rowIndexOfLastPawnInCol + dx * dy; x >= 0 && x < this._environment.Width && y >= 0 && y < this._environment.Height && this._environment.Grid[y][x].State == stateToCheck; nb++)
+                    {
+                        x += dx;
+                        y += dx * dy;
+                    }
+                if (nb >= 3) return true; // there is an aligment if at least 3 other stones of the current user 
+                                          // are surronding the played stone in the tested direction.
+            }
             return false;
         }
 

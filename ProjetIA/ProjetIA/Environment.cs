@@ -16,6 +16,12 @@ namespace ProjetIA
             get { return _grid; }
         }
 
+        private GameForm ui;
+        public GameForm UI
+        {
+            get { return ui; }
+        }
+
         public Environment()
         {
             for (int j = 0; j < 6; j++)
@@ -30,8 +36,12 @@ namespace ProjetIA
             }
         }
         ~Environment() { }
-
         //Cette fonction vide le puissance 4
+
+        public void setUI(GameForm ui)
+        {
+            this.ui = ui;
+        }
         public void restartGame()
         {
             for (int j = 0; j < 6; j ++)
@@ -51,6 +61,7 @@ namespace ProjetIA
         public void setCaseNewState(int x,int y,caseState newState)
         {
             this.Grid[y][x].State = newState;
+            ui.DrawPawn(x, y);
         }
 
         public bool allStateCaseAreEqual(playerTurn toCheck, params Case[] cases)
@@ -64,6 +75,18 @@ namespace ProjetIA
                 }
             }
             return true;
+        }
+
+        public int getTheLowestEmptyCellIndexInCol(int col)
+        {
+            for (int i = 5; i >= 0; i--)
+            {
+                if (Grid[i][col].State == caseState.empty)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
 
         public playerTurn getWinner(playerTurn playerToCheck)

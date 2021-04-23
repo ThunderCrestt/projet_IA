@@ -59,19 +59,12 @@ namespace ProjetIA
             int colIndex = this.getColumnNumber(e.Location);
             if(colIndex !=-1)
             {
-                int rowIndex = this.getTheLowestEmptyCellIndexInCol(colIndex);
+                int rowIndex = this._environment.getTheLowestEmptyCellIndexInCol(colIndex);
                 if(rowIndex!=-1)
                 {
                     //this.board[rowIndex, colIndex] = (this._turn==playerTurn.playerRed) ? 1 : 2; //add in board the piece 
                     this._environment.setCaseNewState(colIndex,rowIndex, (this._turn == playerTurn.playerRed) ? caseState.red : caseState.yellow);
-                    Graphics graphics = this.CreateGraphics();
-                    if (this._turn == playerTurn.playerRed)
-                    {
-                        graphics.FillEllipse(Brushes.Red, 32+48 * colIndex, 32 + 48 * rowIndex, 32, 32);
-                    } else if(this._turn==playerTurn.playerYellow)
-                    {
-                        graphics.FillEllipse(Brushes.Yellow, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
-                    }
+                    //DrawPawn(colIndex, rowIndex);
                     //check if someone has won
 
                     playerTurn winner = getWinner(this._turn);
@@ -96,6 +89,20 @@ namespace ProjetIA
             }
         }
 
+        public void DrawPawn(int colIndex,int rowIndex)
+        {
+            Graphics graphics = this.CreateGraphics();
+            if (this._turn == playerTurn.playerRed)
+            {
+                graphics.FillEllipse(Brushes.Red, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
+            }
+            else if (this._turn == playerTurn.playerYellow)
+            {
+                graphics.FillEllipse(Brushes.Yellow, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
+            }
+        }
+
+
         private playerTurn getWinner(playerTurn playerToCheck)
         {
             return this._environment.getWinner(playerToCheck);
@@ -119,16 +126,6 @@ namespace ProjetIA
 
 
         //get the empty cell that is at the lowest point in the column ( lowest in interface highest in index )
-        private int getTheLowestEmptyCellIndexInCol(int col)
-        {
-            for (int i = 5; i >= 0; i--)
-            {
-                if (this._environment.Grid[i][col].State==caseState.empty)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+
     }
 }

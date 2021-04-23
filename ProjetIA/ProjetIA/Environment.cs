@@ -11,11 +11,14 @@ namespace ProjetIA
     public class Environment
     {
         private List<List<Case>> _grid = new List<List<Case>>();
+        private int _height;
+        private int _width;
         public List<List<Case>> Grid
         {
             get { return _grid; }
         }
 
+        public int nbMovePlayed = 0;
         private GameForm ui;
         public GameForm UI
         {
@@ -24,10 +27,12 @@ namespace ProjetIA
 
         public Environment()
         {
-            for (int j = 0; j < 6; j++)
+            _height = 6;
+            _width = 7;
+            for (int j = 0; j < _height; j++)
             {
                 List<Case> line = new List<Case> ();
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < _width; i++)
                 {
                     Case y = new Case(i, j);
                     line.Add(y);                    
@@ -53,6 +58,7 @@ namespace ProjetIA
             }
         }
 
+        // Cette fonction permet de retourner une case en fonction de ses coordonées
         public Case FoundCase(int x, int y)
         {
             return _grid[y][x];
@@ -63,6 +69,7 @@ namespace ProjetIA
             this.Grid[y][x].State = newState;
             ui.DrawPawn(x, y);
         }
+
 
         public bool allStateCaseAreEqual(playerTurn toCheck, params Case[] cases)
         {

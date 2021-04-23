@@ -13,12 +13,14 @@ namespace ProjetIA
             captor = new Captor(env);
             effector = new Effector(env);
             _beliefs = new Beliefs();
+            this._beliefs.environment = env;
         }
         
 
         private struct Beliefs{
             public List<Case> caseWithYellowPawn;
             public List<Case> caseWithRedPawn;
+            public Environment environment;
         }
 
         private Beliefs _beliefs;
@@ -31,8 +33,20 @@ namespace ProjetIA
             _beliefs.caseWithYellowPawn = captor.GetPawns(caseState.yellow);
         }
 
-        public int alphabeta(Case c, int alpha, int beta)
+        public void agentRoutine()
         {
+            updateBeliefs();
+            //alphaBeta
+        }
+
+        //implémentation de negaMax, une amélioration de l'élagage aplha Beta
+        public int negaMax(Case c, int alpha, int beta)
+        {
+            //check if draw game with nbMoves=grid.Count*grid[0].Count
+
+            //check on all col if there is a winning move and return a highValue;
+
+            //
 
             return 0;
         }

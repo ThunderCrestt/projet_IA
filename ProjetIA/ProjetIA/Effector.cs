@@ -22,7 +22,11 @@ namespace ProjetIA
         public void PutPawn(caseState pawn, int col)
         {
             int rowIndex = this._environment.getTheLowestEmptyCellIndexInCol(col);
-            _environment.setCaseNewState(col, rowIndex,pawn);
+            if (rowIndex != -1)
+            {
+                _environment.setCaseNewState(col, rowIndex, pawn);
+                this._environment.nbMovePlayed++;
+            }
         }
     }
 }

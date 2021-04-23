@@ -66,7 +66,7 @@ namespace ProjetIA
                     this._environment.setCaseNewState(colIndex,rowIndex, (this._turn == playerTurn.playerRed) ? caseState.red : caseState.yellow);
                     //DrawPawn(colIndex, rowIndex);
                     //check if someone has won
-
+                    this._environment.nbMovePlayed++;
                     playerTurn winner = getWinner(this._turn);
                     if(winner!=playerTurn.none)
                     {

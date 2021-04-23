@@ -15,6 +15,12 @@ namespace ProjetIA
             this._environment = environment;
         }
 
+        public bool isAWinningMove(int col)
+        {
+
+            return false;
+        }
+
         // Cette fonction permet de voir tous les pions d'une certaine couleur.
         // entrée : Couleur (énumération) 
         // sortie : Liste de cases des pions de cette couleur.
@@ -102,17 +108,14 @@ namespace ProjetIA
         // Cette fonction permet de voir si la colonne position x est complete ou non
         // entrée : int x la col
         // sortie : True ou False
-        public Boolean CanPlay(int x)
+        public Boolean canPlay(int x)
+        {         
+            return !(_environment.getTheLowestEmptyCellIndexInCol(x) == -1);
+        }
+
+        public Environment GetEnvironment()
         {
-            int cpt = 0;
-            for (int y = 0; y < _environment.Grid.Count; y++)
-            {
-                if (_environment.Grid[y][x].State != caseState.empty)
-                {
-                    cpt += 1;
-                }
-            }
-            return (cpt == _environment.Grid.Count);
+            return _environment;
         }
     }
 }

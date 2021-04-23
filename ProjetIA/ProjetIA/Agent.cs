@@ -11,7 +11,7 @@ namespace ProjetIA
         public Agent(Environment env)
         {
             captor = new Captor(env);
-            effector = new Effector();
+            effector = new Effector(env);
             _beliefs = new Beliefs();
         }
         

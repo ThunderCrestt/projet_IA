@@ -13,12 +13,16 @@ namespace ProjetIA
         {
             get; set;
         }
-        
+
+        public Effector(Environment env)
+        {
+            this._environment = env;
+        }
         //Placer un pion aux coordonnées indiquées
         public void PutPawn(caseState pawn, int col)
         {
             int rowIndex = this._environment.getTheLowestEmptyCellIndexInCol(col);
-            Environment.setCaseNewState(col,rowIndex,pawn);
+            _environment.setCaseNewState(col, rowIndex,pawn);
         }
     }
 }

@@ -64,14 +64,7 @@ namespace ProjetIA
                 {
                     //this.board[rowIndex, colIndex] = (this._turn==playerTurn.playerRed) ? 1 : 2; //add in board the piece 
                     this._environment.setCaseNewState(colIndex,rowIndex, (this._turn == playerTurn.playerRed) ? caseState.red : caseState.yellow);
-                    Graphics graphics = this.CreateGraphics();
-                    if (this._turn == playerTurn.playerRed)
-                    {
-                        graphics.FillEllipse(Brushes.Red, 32+48 * colIndex, 32 + 48 * rowIndex, 32, 32);
-                    } else if(this._turn==playerTurn.playerYellow)
-                    {
-                        graphics.FillEllipse(Brushes.Yellow, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
-                    }
+                    //DrawPawn(colIndex, rowIndex);
                     //check if someone has won
 
                     playerTurn winner = getWinner(this._turn);
@@ -96,6 +89,20 @@ namespace ProjetIA
             }
         }
 
+        public void DrawPawn(int colIndex,int rowIndex)
+        {
+            Graphics graphics = this.CreateGraphics();
+            if (this._turn == playerTurn.playerRed)
+            {
+                graphics.FillEllipse(Brushes.Red, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
+            }
+            else if (this._turn == playerTurn.playerYellow)
+            {
+                graphics.FillEllipse(Brushes.Yellow, 32 + 48 * colIndex, 32 + 48 * rowIndex, 32, 32);
+            }
+        }
+
+
         private playerTurn getWinner(playerTurn playerToCheck)
         {
             return this._environment.getWinner(playerToCheck);
@@ -116,5 +123,9 @@ namespace ProjetIA
             }
             return -1;
         }
+
+
+        //get the empty cell that is at the lowest point in the column ( lowest in interface highest in index )
+
     }
 }

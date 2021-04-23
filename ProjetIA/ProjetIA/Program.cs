@@ -19,7 +19,9 @@ namespace ProjetIA
             Captor cap = new Captor(env);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameForm(env));
+            GameForm ui = new GameForm(env);
+            env.setUI(ui);
+            Application.Run(ui);
         }
     }
 }

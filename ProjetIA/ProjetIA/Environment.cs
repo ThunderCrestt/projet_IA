@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProjetIA
 {
-
+    public enum playerTurn
+    {
+        playerRed = 0,
+        playerYellow = 1,
+        none
+    }
 
     public class Environment
     {
@@ -35,6 +40,8 @@ namespace ProjetIA
             get { return ui; }
         }
 
+        public playerTurn turn;
+
         public Environment()
         {
             _height = 6;
@@ -51,12 +58,14 @@ namespace ProjetIA
             }
         }
         ~Environment() { }
-        //Cette fonction vide le puissance 4
+        
 
         public void setUI(GameForm ui)
         {
             this.ui = ui;
         }
+
+        //Cette fonction vide le puissance 4
         public void restartGame()
         {
             for (int j = 0; j < 6; j ++)

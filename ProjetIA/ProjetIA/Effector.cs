@@ -18,6 +18,7 @@ namespace ProjetIA
         {
             this._environment = env;
         }
+
         //Placer un pion aux coordonnées indiquées
         public void PutPawn(caseState pawn, int col)
         {
@@ -26,6 +27,7 @@ namespace ProjetIA
             {
                 _environment.setCaseNewState(col, rowIndex, pawn);
                 this._environment.nbMovePlayed++;
+                this._environment.turn = playerTurn.playerRed;
             }
         }
     }

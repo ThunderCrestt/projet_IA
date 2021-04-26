@@ -32,11 +32,11 @@ namespace ProjetIA
             {
                 //alphaBeta
                 int bestMove = 3;
-                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,4);
+                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,8);
                 this.effector.PutPawn(caseState.yellow, bestMove);
                 if(this._beliefs.environment.getWinner(playerTurn.playerYellow)==playerTurn.playerYellow)
                 {
-                    this._beliefs.environment.restartGame();
+                    this._beliefs.environment.restartGame(playerTurn.playerYellow);
                 }
                 this._beliefs.environment.IsTurnAgent = false;
             }
@@ -97,6 +97,7 @@ namespace ProjetIA
                             this._beliefs.environment.nbMovePlayed++;
 
                             int nextBestColToPlay = 3;
+
                             int score = -negaMax(playerTurn.playerRed, -beta, -alpha, ref nextBestColToPlay, depth--);
 
                             this._beliefs.environment.Grid[row][x].State = caseState.empty;
@@ -266,7 +267,7 @@ namespace ProjetIA
 
                             if (i != 0)
                             {
-                                if (this._beliefs.environment.Grid[i ][j + cpt + 1].State != statePlayer)
+                                if (j+cpt+1<7 &&this._beliefs.environment.Grid[i ][j + cpt + 1].State != statePlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -335,7 +336,7 @@ namespace ProjetIA
                             }
                             else
                             {
-                                if (this._beliefs.environment.Grid[i -cpt - 1][j + cpt + 1].State != stateOtherPlayer)
+                                if (j + cpt + 1 < 7 && this._beliefs.environment.Grid[i -cpt - 1][j + cpt + 1].State != stateOtherPlayer)
                                 {
                                     if (cpt == 3)
                                     {

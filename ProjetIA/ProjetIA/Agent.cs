@@ -301,7 +301,7 @@ namespace ProjetIA
                         }
                     }
                     //verif diagonale vers haut droite
-                    if (i > 3 && j < 4)
+                    if (i > 2 && j < 4)
                     {
                         if (this._beliefs.environment.Grid[i][j].State == statePlayer)
                         {

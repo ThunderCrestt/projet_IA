@@ -67,7 +67,6 @@ namespace ProjetIA
                         {
                             string messagePlayerWon = (winner == playerTurn.playerRed) ? "Red" : "Yellow";
                             MessageBox.Show("Congrulation " + messagePlayerWon + " player ! You Have Won ! ");
-                            Application.Restart();
                             this._environment.restartGame();
                         }
 

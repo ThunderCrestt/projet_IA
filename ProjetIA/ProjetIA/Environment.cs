@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+
+using System.Windows.Forms;
+
 namespace ProjetIA
 {
     public enum playerTurn
@@ -76,6 +82,7 @@ namespace ProjetIA
                     _grid[j][i].State = caseState.empty;
                 }
             }
+            ui
         }
 
         // Cette fonction permet de retourner une case en fonction de ses coordonées

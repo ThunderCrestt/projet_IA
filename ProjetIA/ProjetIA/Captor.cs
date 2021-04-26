@@ -19,10 +19,10 @@ namespace ProjetIA
         {
             caseState stateToCheck = (turn == playerTurn.playerRed) ? caseState.red : caseState.yellow;
             int rowIndexOfLastPawnInCol = this._environment.getTheLowestEmptyCellIndexInCol(col);
-            if (rowIndexOfLastPawnInCol >= 3 //si on a trois pion aligné sur la même col
-               && this._environment.Grid[rowIndexOfLastPawnInCol-1][col].State==stateToCheck
-               && this._environment.Grid[rowIndexOfLastPawnInCol-2][col].State == stateToCheck
-               && this._environment.Grid[rowIndexOfLastPawnInCol - 3][col].State == stateToCheck) 
+            if (rowIndexOfLastPawnInCol < 3 //si on a trois pion aligné sur la même col
+               && this._environment.Grid[rowIndexOfLastPawnInCol+1][col].State==stateToCheck
+               && this._environment.Grid[rowIndexOfLastPawnInCol+2][col].State == stateToCheck
+               && this._environment.Grid[rowIndexOfLastPawnInCol + 3][col].State == stateToCheck) 
             {
                 return true;
             }

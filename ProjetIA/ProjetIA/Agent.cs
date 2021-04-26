@@ -28,12 +28,16 @@ namespace ProjetIA
         public Effector effector;
         public void agentRoutine()
         {
-            //alphaBeta
-            int bestMove = 3;
-            negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,1);
-            Console.WriteLine(bestMove);
-            this.effector.PutPawn(caseState.yellow, bestMove);
-            this._beliefs.environment.getWinner(playerTurn.playerYellow);
+            if (this._beliefs.environment.IsTurnAgent)
+            {
+                //alphaBeta
+                int bestMove = 3;
+                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,1);
+               Console.WriteLine(bestMove);
+                this.effector.PutPawn(caseState.yellow, bestMove);
+                this._beliefs.environment.getWinner(playerTurn.playerYellow);
+                this._beliefs.environment.IsTurnAgent = false;
+            }
         }
 
         //implémentation de negaMax, une amélioration de l'élagage aplha Beta
@@ -126,7 +130,7 @@ namespace ProjetIA
             playerTurn otherPlayer = (player == playerTurn.playerRed) ? playerTurn.playerYellow : playerTurn.playerRed;
             caseState stateOtherPlayer = (otherPlayer == playerTurn.playerRed) ? caseState.red : caseState.yellow;
             //score eval
-            int score = 0, cpt = 0;
+            int score = 1, cpt = 0;
             if (this._beliefs.environment.getWinner(otherPlayer) == otherPlayer)
             {
                 return -10000 + this._beliefs.environment.nbMovePlayed;

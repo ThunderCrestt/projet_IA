@@ -48,17 +48,17 @@ namespace ProjetIA
             _width = 7;
             for (int j = 0; j < _height; j++)
             {
-                List<Case> line = new List<Case> ();
+                List<Case> line = new List<Case>();
                 for (int i = 0; i < _width; i++)
                 {
                     Case y = new Case(i, j);
-                    line.Add(y);                    
+                    line.Add(y);
                 }
                 _grid.Add(line);
             }
         }
         ~Environment() { }
-        
+
 
         public void setUI(GameForm ui)
         {
@@ -68,9 +68,9 @@ namespace ProjetIA
         //Cette fonction vide le puissance 4
         public void restartGame()
         {
-            for (int j = 0; j < 6; j ++)
+            for (int j = 0; j < 6; j++)
             {
-                for (int i = 0; i < 7; i ++)
+                for (int i = 0; i < 7; i++)
                 {
                     _grid[i][j].State = caseState.empty;
                 }
@@ -82,8 +82,8 @@ namespace ProjetIA
         {
             return _grid[y][x];
         }
-        
-        public void setCaseNewState(int x,int y,caseState newState)
+
+        public void setCaseNewState(int x, int y, caseState newState)
         {
             this.Grid[y][x].State = newState;
             ui.DrawPawn(x, y);
@@ -123,7 +123,7 @@ namespace ProjetIA
             {
                 for (int col = 0; col < Grid[0].Count; col++)
                 {
-                    if (this.allStateCaseAreEqual(playerToCheck,Grid[row][col],Grid[row + 1][col], Grid[row + 2][col], Grid[row + 3][col]))
+                    if (this.allStateCaseAreEqual(playerToCheck, Grid[row][col], Grid[row + 1][col], Grid[row + 2][col], Grid[row + 3][col]))
                     {
                         return playerToCheck;
                     }
@@ -138,7 +138,7 @@ namespace ProjetIA
             {
                 for (int col = 0; col < Grid[0].Count - 3; col++)
                 {
-                    if (this.allStateCaseAreEqual(playerToCheck,Grid[row][col], Grid[row][col + 1], Grid[row][col + 2], Grid[row][col + 3]))
+                    if (this.allStateCaseAreEqual(playerToCheck, Grid[row][col], Grid[row][col + 1], Grid[row][col + 2], Grid[row][col + 3]))
                     {
                         return playerToCheck;
                     }
@@ -149,9 +149,9 @@ namespace ProjetIA
             #region top left diagonal win check (\)
             for (int row = 0; row < Grid.Count - 3; row++)
             {
-                for (int col = 0; col <Grid[0].Count - 3; col++)
+                for (int col = 0; col < Grid[0].Count - 3; col++)
                 {
-                    if (this.allStateCaseAreEqual(playerToCheck, Grid[row][col], Grid[row + 1][col + 1],Grid[row + 2][col + 2], Grid[row + 3][col + 3]))
+                    if (this.allStateCaseAreEqual(playerToCheck, Grid[row][col], Grid[row + 1][col + 1], Grid[row + 2][col + 2], Grid[row + 3][col + 3]))
                     {
                         return playerToCheck;
                     }
@@ -165,7 +165,7 @@ namespace ProjetIA
             {
                 for (int col = 3; col < Grid[0].Count; col++)
                 {
-                    if (this.allStateCaseAreEqual(playerToCheck, Grid[row][col], Grid[row + 1][col - 1],Grid[row + 2][col - 2], Grid[row + 3][col - 3]))
+                    if (this.allStateCaseAreEqual(playerToCheck, Grid[row][col], Grid[row + 1][col - 1], Grid[row + 2][col - 2], Grid[row + 3][col - 3]))
                     {
                         return playerToCheck;
                     }
@@ -175,5 +175,16 @@ namespace ProjetIA
             return playerTurn.none;
 
         }
+
+        private bool _isTurnAgent;
+        public bool IsTurnAgent
+        {
+            get { return _isTurnAgent; }
+            set { _isTurnAgent = value; }
+        }
+
+
+    
     }
 }
+

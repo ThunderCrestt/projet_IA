@@ -80,6 +80,7 @@ namespace ProjetIA
                         {
                             this._environment.turn = playerTurn.playerRed;
                         }
+                        this._environment.IsTurnAgent = true;
 
                     }
                 }

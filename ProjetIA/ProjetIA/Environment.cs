@@ -72,7 +72,7 @@ namespace ProjetIA
             {
                 for (int i = 0; i < 7; i++)
                 {
-                    _grid[i][j].State = caseState.empty;
+                    _grid[j][i].State = caseState.empty;
                 }
             }
         }

@@ -65,9 +65,7 @@ namespace ProjetIA
                         playerTurn winner = getWinner(this._environment.turn);
                         if (winner != playerTurn.none)
                         {
-                            string messagePlayerWon = (winner == playerTurn.playerRed) ? "Red" : "Yellow";
-                            MessageBox.Show("Congrulation " + messagePlayerWon + " player ! You Have Won ! ");
-                            this._environment.restartGame();
+                            this._environment.restartGame(winner);
                         }
 
                         //if nobody has won we give the other player the turn
@@ -84,6 +82,13 @@ namespace ProjetIA
                     }
                 }
             }
+        }
+
+        public void printWinner(playerTurn player)
+        {
+            string messagePlayerWon = (player == playerTurn.playerRed) ? "Red" : "Yellow";
+            MessageBox.Show("Congrulation " + messagePlayerWon + " player ! You Have Won ! ");
+            Application.Restart();
         }
 
         public void DrawPawn(int colIndex,int rowIndex)

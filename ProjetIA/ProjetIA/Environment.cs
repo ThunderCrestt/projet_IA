@@ -73,7 +73,7 @@ namespace ProjetIA
         }
 
         //Cette fonction vide le puissance 4
-        public void restartGame()
+        public void restartGame(playerTurn winner)
         {
             for (int j = 0; j < 6; j++)
             {
@@ -82,7 +82,7 @@ namespace ProjetIA
                     _grid[j][i].State = caseState.empty;
                 }
             }
-            ui
+            ui.printWinner(winner);
         }
 
         // Cette fonction permet de retourner une case en fonction de ses coordonées

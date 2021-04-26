@@ -51,6 +51,7 @@ namespace ProjetIA
             Thread Thread2 = new Thread(()=>agentThread(agent));
             Thread1.Start();
             Thread2.Start();
+
             Console.WriteLine("truc");
         }
     }

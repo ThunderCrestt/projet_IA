@@ -80,10 +80,10 @@ namespace ProjetIA
                 }
                 */
 
-                List<int> columns =new List<int>();
+                List<int> columns = new List<int>(){1, 2, 3, 4, 5, 6};
                 //shuffle col numbers
-
-                for (int x = 0; x < this._beliefs.environment.Width; x++) // compute the score of all possible next move and keep the best one
+                columns.shuffle();
+                foreach(int x in columns) // compute the score of all possible next move and keep the best one
                 {
                     if (this.captor.canPlay(x))
                     {
@@ -506,24 +506,7 @@ namespace ProjetIA
         }
     }
 
-    /*
-    public void Shuffle<T>(this IList<T> list)
-    {
-        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
-        int n = list.Count;
-        while (n > 1)
-        {
-            byte[] box = new byte[1];
-            do provider.GetBytes(box);
-            while (!(box[0] < n * (Byte.MaxValue / n)));
-            int k = (box[0] % n);
-            n--;
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-    }
-    */
+
 
 
 }

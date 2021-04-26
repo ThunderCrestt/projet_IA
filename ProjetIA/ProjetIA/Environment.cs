@@ -46,6 +46,7 @@ namespace ProjetIA
         {
             _height = 6;
             _width = 7;
+            _isTurnAgent = false;
             for (int j = 0; j < _height; j++)
             {
                 List<Case> line = new List<Case>();

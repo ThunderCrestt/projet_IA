@@ -32,8 +32,7 @@ namespace ProjetIA
             {
                 //alphaBeta
                 int bestMove = 3;
-                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,1);
-               Console.WriteLine(bestMove);
+                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,4);
                 this.effector.PutPawn(caseState.yellow, bestMove);
                 this._beliefs.environment.getWinner(playerTurn.playerYellow);
                 this._beliefs.environment.IsTurnAgent = false;
@@ -301,8 +300,9 @@ namespace ProjetIA
                             cpt = 0;
                         }
                     }
-                    //verif diagonale vers haut droite
+
                     if (i > 2 && j < 4)
+
                     {
                         if (this._beliefs.environment.Grid[i][j].State == statePlayer)
                         {

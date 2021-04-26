@@ -153,7 +153,7 @@ namespace ProjetIA
                         {
                             ++cpt;
 
-                            while (this._beliefs.environment.Grid[i + cpt][j].State == statePlayer)
+                            while (this._beliefs.environment.Grid[i + cpt][j].State == statePlayer && cpt < 4)
                             {
                                 ++cpt;
 
@@ -302,12 +302,13 @@ namespace ProjetIA
                     }
                     //verif diagonale vers haut droite
                     if (i > 2 && j < 4)
+
                     {
                         if (this._beliefs.environment.Grid[i][j].State == statePlayer)
                         {
                             ++cpt;
 
-                            while (this._beliefs.environment.Grid[i + cpt][j + cpt].State == statePlayer)
+                            while (this._beliefs.environment.Grid[i - cpt][j + cpt].State == statePlayer)
                             {
                                 ++cpt;
                             }
@@ -354,7 +355,7 @@ namespace ProjetIA
                         {
                             ++cpt;
 
-                            while (this._beliefs.environment.Grid[i + cpt][j + cpt].State == stateOtherPlayer)
+                            while (this._beliefs.environment.Grid[i - cpt][j + cpt].State == stateOtherPlayer)
                             {
                                 ++cpt;
 

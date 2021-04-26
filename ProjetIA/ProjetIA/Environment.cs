@@ -82,7 +82,6 @@ namespace ProjetIA
                     _grid[j][i].State = caseState.empty;
                 }
             }
-            ui
         }
 
         // Cette fonction permet de retourner une case en fonction de ses coordonées

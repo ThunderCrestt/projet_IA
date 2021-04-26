@@ -51,15 +51,15 @@ namespace ProjetIA
             {
                 return 0;
             }
-                
+
             //check if draw game with nbMoves=grid.Count*grid[0].Count
 
             //check on all col if there is a winning move and return a highValue;
             for (int i = 0; i < this._beliefs.environment.Width; i++)
             {
-                if(this.captor.canPlay(i) && this.captor.isAWinningMove(i, turn))
+                if (this.captor.canPlay(i) && this.captor.isAWinningMove(i, turn))
                 {
-                    return  (this._beliefs.environment.Height * this._beliefs.environment.Width + 1 - this._beliefs.environment.nbMovePlayed);
+                    return (this._beliefs.environment.Height * this._beliefs.environment.Width + 1 - this._beliefs.environment.nbMovePlayed);
                 }
             }
 
@@ -97,8 +97,7 @@ namespace ProjetIA
                             this._beliefs.environment.nbMovePlayed++;
 
                             int nextBestColToPlay = 3;
-                            depth--;
-                            int score = -negaMax(playerTurn.playerRed, -beta, -alpha, ref nextBestColToPlay, depth);
+                            int score = -negaMax(playerTurn.playerRed, -beta, -alpha, ref nextBestColToPlay, depth--);
 
                             this._beliefs.environment.Grid[row][x].State = caseState.empty;
                             this._beliefs.environment.nbMovePlayed--;
@@ -206,7 +205,7 @@ namespace ProjetIA
                     }
                     // Amelioration à apporter : ne scanne pas les 3 cases à gauche 
                     //Lignes
-                    if (j < 4)
+                    if (j < 3)
                     {
                         if (this._beliefs.environment.Grid[i][j].State == statePlayer)
                         {
@@ -305,7 +304,7 @@ namespace ProjetIA
                         }
                     }
                     //verif diagonale vers haut droite
-                    if (i > 2 && j < 4)
+                    if (i > 2 && j < 3)
                     {
                         if (this._beliefs.environment.Grid[i][j].State == statePlayer)
                         {
@@ -405,7 +404,7 @@ namespace ProjetIA
                     }
 
                     //verif diagonale vers haut gauche
-                    if (i > 2 && j > 2)
+                    if (i > 2 && j > 3)
                     {
                         if (this._beliefs.environment.Grid[i][j].State == statePlayer)
                         {

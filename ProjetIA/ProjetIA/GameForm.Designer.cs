@@ -36,11 +36,11 @@ namespace ProjetIA
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // titleLabel 
+            // titleLabel
             // 
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.titleLabel.BackColor = System.Drawing.SystemColors.Menu;
-            this.titleLabel.Font = new System.Drawing.Font("Magneto", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.Black;
             this.titleLabel.Location = new System.Drawing.Point(3, 0);
             this.titleLabel.Name = "titleLabel";
@@ -51,7 +51,7 @@ namespace ProjetIA
             // 
             // redPawnLabel
             // 
-            this.redPawnLabel.Font = new System.Drawing.Font("Magneto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redPawnLabel.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.redPawnLabel.ForeColor = System.Drawing.Color.Red;
             this.redPawnLabel.Location = new System.Drawing.Point(3, 168);
             this.redPawnLabel.Name = "redPawnLabel";
@@ -62,7 +62,7 @@ namespace ProjetIA
             // 
             // yellowPawnLabel
             // 
-            this.yellowPawnLabel.Font = new System.Drawing.Font("Magneto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yellowPawnLabel.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yellowPawnLabel.ForeColor = System.Drawing.Color.Gold;
             this.yellowPawnLabel.Location = new System.Drawing.Point(3, 212);
             this.yellowPawnLabel.Name = "yellowPawnLabel";

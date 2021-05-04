@@ -24,6 +24,7 @@ namespace ProjetIA
         }
 
         public Beliefs _beliefs;
+        public List<int> intentions=new List<int>();
         Captor captor;
         public Effector effector;
 
@@ -35,7 +36,8 @@ namespace ProjetIA
                 //alphaBeta
                 int bestMove = 3;
                 negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,maxDepth);
-                this.effector.PutPawn(caseState.yellow, bestMove);
+                intentions.Add(bestMove);
+                this.effector.PutPawn(caseState.yellow, intentions[intentions.Count-1]);
                 if(this._beliefs.environment.getWinner(playerTurn.playerYellow)==playerTurn.playerYellow)
                 {
                     this._beliefs.environment.restartGame(playerTurn.playerYellow);
@@ -44,17 +46,15 @@ namespace ProjetIA
             }
         }
 
-        //implémentation de negaMax, une amélioration de l'élagage aplha Beta
+        //implémentation de negaMax, une amélioration de min max avec de l'élagage aplha Beta
         public int negaMax(playerTurn turn, int alpha, int beta,ref int bestColToPlay,int depth)
         {
-            //Assert(alpha  <  beta, "error : beta > aplha");
             int bestScore = -int.MaxValue;
             if (_beliefs.environment.nbMovePlayed == _beliefs.environment.Height * _beliefs.environment.Width)
             {
                 return 0;
             }
 
-            //check if draw game with nbMoves=grid.Count*grid[0].Count
 
             //check on all col if there is a winning move and return a highValue;
             for (int i = 0; i < this._beliefs.environment.Width; i++)
@@ -72,6 +72,7 @@ namespace ProjetIA
             if (depth <= 0)
             {
                 bestScore = eval(turn);
+                return bestScore;
             }
             else
             {

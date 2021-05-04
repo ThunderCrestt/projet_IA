@@ -8,13 +8,13 @@ namespace ProjetIA
 {
     class Effector
     {
-        public Environment _environment; //field
-        public Environment Environment //property
+        public Environnement _environment; //field
+        public Environnement Environment //property
         {
             get; set;
         }
 
-        public Effector(Environment env)
+        public Effector(Environnement env)
         {
             this._environment = env;
         }

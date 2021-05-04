@@ -39,7 +39,7 @@ namespace ProjetIA
         static void Main()
         {
 
-            Environment env = new Environment();
+            Environnement env = new Environnement();
             //Captor cap = new Captor(env);
             Agent agent = new Agent(env);
 

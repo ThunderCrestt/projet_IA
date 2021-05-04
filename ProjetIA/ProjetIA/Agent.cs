@@ -10,7 +10,7 @@ namespace ProjetIA
 {
     class Agent
     {
-        public Agent(Environment env)
+        public Agent(Environnement env)
         {
             captor = new Captor(env);
             effector = new Effector(env);
@@ -20,19 +20,21 @@ namespace ProjetIA
         
 
         public struct Beliefs{
-            public Environment environment;
+            public Environnement environment;
         }
 
         public Beliefs _beliefs;
         Captor captor;
         public Effector effector;
+
+        int maxDepth = 6;
         public void agentRoutine()
         {
             if (this._beliefs.environment.IsTurnAgent)
             {
                 //alphaBeta
                 int bestMove = 3;
-                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,6);
+                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,maxDepth);
                 this.effector.PutPawn(caseState.yellow, bestMove);
                 if(this._beliefs.environment.getWinner(playerTurn.playerYellow)==playerTurn.playerYellow)
                 {
@@ -57,7 +59,7 @@ namespace ProjetIA
             //check on all col if there is a winning move and return a highValue;
             for (int i = 0; i < this._beliefs.environment.Width; i++)
             {
-                if (depth == 6)
+                if (depth == maxDepth)
                 {
                     if (this.captor.canPlay(i) && this.captor.isAWinningMove(i, turn))
                     {

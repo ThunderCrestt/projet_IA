@@ -16,8 +16,8 @@ namespace ProjetIA
     public partial class GameForm : Form
     {
         private Rectangle[] _columns;
-        private Environment _environment;
-        public GameForm(Environment environment)
+        private Environnement _environment;
+        public GameForm(Environnement environment)
         {
             InitializeComponent();
             this._columns = new Rectangle[7]; // 7 columns
@@ -89,6 +89,7 @@ namespace ProjetIA
             string messagePlayerWon = (player == playerTurn.playerRed) ? "Red" : "Yellow";
             MessageBox.Show("Congrulation " + messagePlayerWon + " player ! You Have Won ! ");
             Application.Restart();
+            Environment.Exit(0);
         }
 
         public void DrawPawn(int colIndex,int rowIndex)

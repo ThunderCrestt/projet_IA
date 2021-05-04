@@ -8,9 +8,9 @@ namespace ProjetIA
 {
     class Captor
     {
-        private Environment _environment;
+        private Environnement _environment;
 
-        public Captor(Environment environment)
+        public Captor(Environnement environment)
         {
             this._environment = environment;
         }
@@ -215,7 +215,7 @@ namespace ProjetIA
             return !(_environment.getTheLowestEmptyCellIndexInCol(x) == -1);
         }
 
-        public Environment GetEnvironment()
+        public Environnement GetEnvironment()
         {
             return _environment;
         }

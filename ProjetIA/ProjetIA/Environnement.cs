@@ -19,7 +19,7 @@ namespace ProjetIA
         none
     }
 
-    public class Environment
+    public class Environnement
     {
         private int _height;
         public int Height
@@ -48,7 +48,7 @@ namespace ProjetIA
 
         public playerTurn turn;
 
-        public Environment()
+        public Environnement()
         {
             _height = 6;
             _width = 7;
@@ -64,7 +64,7 @@ namespace ProjetIA
                 _grid.Add(line);
             }
         }
-        ~Environment() { }
+        ~Environnement() { }
 
 
         public void setUI(GameForm ui)

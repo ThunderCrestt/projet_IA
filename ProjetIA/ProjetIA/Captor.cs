@@ -15,31 +15,111 @@ namespace ProjetIA
             this._environment = environment;
         }
 
-        public bool isAWinningMove(int col,playerTurn turn)
+        public bool isAWinningMove(int col, playerTurn turn)
         {
             caseState stateToCheck = (turn == playerTurn.playerRed) ? caseState.red : caseState.yellow;
             int rowIndexOfLastPawnInCol = this._environment.getTheLowestEmptyCellIndexInCol(col);
-            if (rowIndexOfLastPawnInCol < 3 //si on a trois pion aligné sur la même col
-               && this._environment.Grid[rowIndexOfLastPawnInCol+1][col].State==stateToCheck
-               && this._environment.Grid[rowIndexOfLastPawnInCol+2][col].State == stateToCheck
-               && this._environment.Grid[rowIndexOfLastPawnInCol + 3][col].State == stateToCheck) 
+
+            // There is a winning move with columns ?
+            if (rowIndexOfLastPawnInCol < 3
+               && this._environment.Grid[rowIndexOfLastPawnInCol + 1][col].State == stateToCheck
+               && this._environment.Grid[rowIndexOfLastPawnInCol + 2][col].State == stateToCheck
+               && this._environment.Grid[rowIndexOfLastPawnInCol + 3][col].State == stateToCheck)
             {
                 return true;
             }
 
-            for (int dy = -1; dy <= 1; dy++)
-            {                                     // Iterate on horizontal (dy = 0) or two diagonal directions (dy = -1 or dy = 1).
-                int nb = 0;                       // counter of the number of stones of current player surronding the played stone in tested direction.
-                for (int dx = -1; dx <= 1; dx += 2) // count continuous stones of current player on the left, then right of the played column.
-
-                    for (int x = col + dx, y = rowIndexOfLastPawnInCol + dx * dy; x >= 0 && x < this._environment.Width && y >= 0 && y < this._environment.Height && this._environment.Grid[y][x].State == stateToCheck; nb++)
-                    {
-                        x += dx;
-                        y += dx * dy;
-                    }
-                if (nb >= 3) return true; // there is an aligment if at least 3 other stones of the current user 
-                                          // are surronding the played stone in the tested direction.
+            // There is a winning move with line ?
+            int nbYellowAtRight = 0;
+            int nbYellowAtLeft = 0;
+            for (int i = 1; col + i < this._environment.Width; i++)
+            {
+                if (this._environment.Grid[rowIndexOfLastPawnInCol][col + i].State == stateToCheck)
+                {
+                    nbYellowAtRight++;
+                }
+                else
+                {
+                    break;
+                }
             }
+            for (int i = 1; col - i >= 0; i++)
+            {
+                if (this._environment.Grid[rowIndexOfLastPawnInCol][col - i].State == stateToCheck)
+                {
+                    nbYellowAtLeft++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (nbYellowAtLeft >= 3 || nbYellowAtRight >= 3 || nbYellowAtLeft + nbYellowAtRight >= 3)
+            {
+                return true;
+            }
+
+            // There is a winning move with diagonal up-right?
+            nbYellowAtRight = 0;
+            nbYellowAtLeft = 0;
+            for (int i = 1; col + i < this._environment.Width && rowIndexOfLastPawnInCol - i >= 0; i++)
+            {
+                if (this._environment.Grid[rowIndexOfLastPawnInCol - i][col + i].State == stateToCheck)
+                {
+                    nbYellowAtRight++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (int i = 1; col - i >= 0 && rowIndexOfLastPawnInCol + i < this._environment.Height; i++)
+            {
+                if (this._environment.Grid[rowIndexOfLastPawnInCol + i][col - i].State == stateToCheck)
+                {
+                    nbYellowAtLeft++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (nbYellowAtLeft >= 3 || nbYellowAtRight >= 3 || nbYellowAtLeft + nbYellowAtRight >= 3)
+            {
+                return true;
+            }
+
+            // There is a winning move with diagonal up-left?
+            nbYellowAtRight = 0;
+            nbYellowAtLeft = 0;
+            for (int i = 1; col - i >= 0 && rowIndexOfLastPawnInCol - i >= 0; i++)
+            {
+                if (this._environment.Grid[rowIndexOfLastPawnInCol - i][col - i].State == stateToCheck)
+                {
+                    nbYellowAtLeft++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (int i = 1; (col + i) < this._environment.Width && (rowIndexOfLastPawnInCol + i) < this._environment.Height; i++)
+            {
+                if (this._environment.Grid[rowIndexOfLastPawnInCol + i][col + i].State == stateToCheck)
+                {
+                    nbYellowAtRight++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (nbYellowAtLeft >= 3 || nbYellowAtRight >= 3 || nbYellowAtLeft + nbYellowAtRight >= 3)
+            {
+                return true;
+            }
+
+            // if there is no winning move
             return false;
         }
 

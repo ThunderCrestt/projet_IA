@@ -32,7 +32,7 @@ namespace ProjetIA
             {
                 //alphaBeta
                 int bestMove = 3;
-                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,8);
+                negaMax(playerTurn.playerYellow, -this._beliefs.environment.Width * this._beliefs.environment.Height / 2, this._beliefs.environment.Width * this._beliefs.environment.Height / 2, ref bestMove,6);
                 this.effector.PutPawn(caseState.yellow, bestMove);
                 if(this._beliefs.environment.getWinner(playerTurn.playerYellow)==playerTurn.playerYellow)
                 {
@@ -57,9 +57,13 @@ namespace ProjetIA
             //check on all col if there is a winning move and return a highValue;
             for (int i = 0; i < this._beliefs.environment.Width; i++)
             {
-                if (this.captor.canPlay(i) && this.captor.isAWinningMove(i, turn))
+                if (depth == 6)
                 {
-                    return (this._beliefs.environment.Height * this._beliefs.environment.Width + 1 - this._beliefs.environment.nbMovePlayed);
+                    if (this.captor.canPlay(i) && this.captor.isAWinningMove(i, turn))
+                    {
+                        bestColToPlay = i;
+                        return (1000);
+                    }
                 }
             }
 
@@ -318,7 +322,7 @@ namespace ProjetIA
 
                             if (i != 5 && j != 0)
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j + cpt + 1].State != stateOtherPlayer || this._beliefs.environment.Grid[i + 1][j - 1].State != stateOtherPlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j + cpt].State != stateOtherPlayer || this._beliefs.environment.Grid[i + 1][j - 1].State != stateOtherPlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -336,7 +340,7 @@ namespace ProjetIA
                             }
                             else
                             {
-                                if (j + cpt + 1 < 7 && this._beliefs.environment.Grid[i -cpt - 1][j + cpt + 1].State != stateOtherPlayer)
+                                if (j + cpt + 1 < 7 && this._beliefs.environment.Grid[i -cpt][j + cpt].State != stateOtherPlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -366,7 +370,7 @@ namespace ProjetIA
 
                             if (i != 5 && j != 0)
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j + cpt + 1].State != statePlayer || this._beliefs.environment.Grid[i + 1][j - 1].State != statePlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j + cpt].State != statePlayer || this._beliefs.environment.Grid[i + 1][j - 1].State != statePlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -384,7 +388,7 @@ namespace ProjetIA
                             }
                             else
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j + cpt + 1].State != statePlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j + cpt].State != statePlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -417,7 +421,7 @@ namespace ProjetIA
 
                             if (j != 6 && i != 5)
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j - cpt - 1].State != stateOtherPlayer || this._beliefs.environment.Grid[i + 1][j + 1].State != stateOtherPlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j - cpt].State != stateOtherPlayer || this._beliefs.environment.Grid[i + 1][j + 1].State != stateOtherPlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -435,7 +439,7 @@ namespace ProjetIA
                             }
                             else
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j - cpt - 1].State != stateOtherPlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j - cpt].State != stateOtherPlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -465,7 +469,7 @@ namespace ProjetIA
 
                             if (i != 5 && j != 6)
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j - cpt - 1].State != statePlayer || this._beliefs.environment.Grid[i + 1][j + 1].State != statePlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j - cpt].State != statePlayer || this._beliefs.environment.Grid[i + 1][j + 1].State != statePlayer)
                                 {
                                     if (cpt == 3)
                                     {
@@ -483,7 +487,7 @@ namespace ProjetIA
                             }
                             else
                             {
-                                if (this._beliefs.environment.Grid[i - cpt - 1][j - cpt - 1].State != statePlayer)
+                                if (this._beliefs.environment.Grid[i - cpt][j - cpt].State != statePlayer)
                                 {
                                     if (cpt == 3)
                                     {
